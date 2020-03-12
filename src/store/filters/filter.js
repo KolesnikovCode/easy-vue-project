@@ -72,7 +72,7 @@ export default {
           },
           {
             id: 2,
-            title: 'Современный / неограниченный',
+            title: 'Унисекс',
             checked: false
           }
         ]

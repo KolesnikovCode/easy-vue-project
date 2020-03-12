@@ -31,7 +31,7 @@
               :price="product.price"
             />
           </div>
-          <p v-else>Ничего не найдено</p>
+          <p v-else>Ничего не найдено! ;(<br>Попробуйте изменить фильтр.</p>
         </div>
       </div>
     </div>
@@ -101,7 +101,7 @@ export default {
 <style lang="scss" scoped>
 .configurator {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 240px 1fr;
   padding-top: 40px;
   &-filters {
     display: flex;

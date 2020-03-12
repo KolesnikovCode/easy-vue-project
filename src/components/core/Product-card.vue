@@ -33,6 +33,7 @@ export default {
   margin: 10px;
   transition: all .2s ease;
   cursor: pointer;
+  width: 180px;
   &:hover {
     transform: scale(1.015);
   }
@@ -44,7 +45,8 @@ export default {
     justify-content: center;
     padding-top: 5px;
     img {
-      max-height: 250px;
+      height: 250px;
+      width: 180px;
     }
   }
   &-styles {

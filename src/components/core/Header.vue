@@ -33,6 +33,10 @@ export default {
         text-decoration: none;
         color: #fff;
         letter-spacing: 3px;
+        transition: all .2s ease;
+        &:hover {
+            letter-spacing: 10px;
+        }
     }
     nav {
         display: flex;
@@ -47,17 +51,17 @@ export default {
             font-weight: bold;
             transition: all .2s ease;
             &:hover {
-                color: rgb(255, 214, 102);
+                color: #ffd666;
             }
             &:not(:last-child) {
                 margin-right: 10px;
             }
         }
         .router-link-exact-active {
-            color: rgb(255, 187, 0);
+            color: #ffbb00;
             pointer-events: none;
             &:hover {
-                color: rgb(255, 187, 0);
+                color: #ffbb00;
             }
         }
     }
