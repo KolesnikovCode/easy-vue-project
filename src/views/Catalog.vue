@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <div class="container">
-      <h1>Каталог</h1>
+      <h1 @click="foo">Каталог</h1>
       <div class="configurator">
         <div class="configurator-filters">
 
@@ -22,7 +22,15 @@
 
         </div>
         <div class="configurator-content">
-
+          <div class="products" v-if="filteredProducts.length > 0">
+            <ProductCard
+              v-for="(product, index) in filteredProducts" :key="index"
+              :title="product.title"
+              :image="product.image"
+              :styles="product.styles"
+            />
+          </div>
+          <p v-else>Ничего не найдено</p>
         </div>
       </div>
     </div>
@@ -31,16 +39,47 @@
 
 <script>
 import { mapState } from 'vuex';
+import ProductCard from '../components/core/Product-card';
 
 export default {
   methods: {
     toggleFilter(filterIndex) {
       this.$store.commit('toggleOpenFilter', filterIndex);
+    },
+    foo() {
+      
     }
   },
-  computed: mapState({
-    filters: state => state.filters,
-  })
+  computed: {
+    ...mapState({
+      filters: state => state.FiltersModule.filters,
+      products: state => state.ProductsModule.products
+    }),
+    filteredProducts() {
+      // Находим опции фильтра с магазинами
+      const magazineFilters = this.filters.find(flrt => flrt.title === 'Магазины').options;
+      // Находим все активные опции в фильтре магазинов
+      const magazineCheckedOptions = magazineFilters.filter(flrt => flrt.checked);
+
+      if (magazineCheckedOptions.length < 1) {
+        return this.products;
+      }
+
+      // Получаем все названия активных фильтров в нижнем регистре
+      const activeMagazineOptions = magazineCheckedOptions.map(opt => opt.title.toLowerCase());
+
+      const filteredMagazineProducts = this.products.filter(product => {
+        return activeMagazineOptions.some(opt => {
+          return opt == product.magazine.toLowerCase();
+        });
+      });
+
+      return filteredMagazineProducts;
+    }
+  },
+  components: {
+    ProductCard
+  }
 }
 </script>
 
@@ -100,6 +139,14 @@ export default {
         overflow: hidden;
         padding: 0;
       }
+    }
+  }
+  &-content {
+    padding: 0 20px;
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      margin: -10px;
     }
   }
 }

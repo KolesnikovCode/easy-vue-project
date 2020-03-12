@@ -1,15 +1,60 @@
 <template>
   <div class="product">
-    
+    <div class="product-title">{{ title }}</div>
+    <div class="product-image">
+      <img :src="image" alt="product-photo">
+    </div>
+    <div class="product-styles">
+      <div class="product-styles-style" v-for="(style, index) in styles" :key="index">{{ style }}</div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  
+  props: {
+    title: String,
+    image: String,
+    styles: Array,
+    magazine: String,
+    gender: String
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-
+.product {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  transition: all .2s ease;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.015);
+  }
+  &-title {
+    font-weight: bold;
+  }
+  &-image {
+    display: flex;
+    justify-content: center;
+    img {
+      max-height: 250px;
+    }
+  }
+  &-styles {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -5px;
+    padding-top: 10px;
+    &-style {
+      padding: 2px 5px;
+      user-select: none;
+      border-radius: 5px;
+      background: #a9ddff;
+      margin: 5px;
+      text-transform: capitalize;
+    }
+  }
+}
 </style>
