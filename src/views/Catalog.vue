@@ -56,17 +56,19 @@ export default {
       products: state => state.ProductsModule.products
     }),
     filteredProducts() {
-      // Находим опции фильтра с магазинами
+      // Находим опции фильтра по магазинам
       const magazineFilters = this.filters.find(flrt => flrt.title === 'Магазины').options;
       // Находим все активные опции в фильтре магазинов
       const magazineCheckedOptions = magazineFilters.filter(flrt => flrt.checked);
-
-      if (magazineCheckedOptions.length < 1) {
-        return this.products;
-      }
-
-      // Получаем все названия активных фильтров в нижнем регистре
+      // Получаем все названия активных фильтров магазинов в нижнем регистре
       const activeMagazineOptions = magazineCheckedOptions.map(opt => opt.title.toLowerCase());
+
+      // Находим опции фильтра по стилям
+      const stylesFilters = this.filters.find(flrt => flrt.title === 'Стиль').options;
+      // Находим все активные опции в фильтре стилей
+      const stylesCheckedOptions = stylesFilters.filter(flrt => flrt.checked);
+      // Получаем все названия активных фильтров по стилям в нижнем регистре
+      const activeStylesOptions = stylesCheckedOptions.map(opt => opt.title.toLowerCase());
 
       const filteredMagazineProducts = this.products.filter(product => {
         return activeMagazineOptions.some(opt => {
@@ -74,7 +76,18 @@ export default {
         });
       });
 
-      return filteredMagazineProducts;
+      const productsAfterMagazineFilters = filteredMagazineProducts.length ? filteredMagazineProducts : this.products;
+
+      const filteredStylesProducts = productsAfterMagazineFilters.filter(prod => {
+        return activeStylesOptions.some(opt => prod.styles.some(style => style === opt));
+      });
+
+      if (!filteredStylesProducts.length) {
+        return productsAfterMagazineFilters;
+      }
+
+
+      return filteredStylesProducts;
     }
   },
   components: {
