@@ -28,6 +28,7 @@
               :title="product.title"
               :image="product.image"
               :styles="product.styles"
+              :price="product.price"
             />
           </div>
           <p v-else>Ничего не найдено</p>

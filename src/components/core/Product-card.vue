@@ -5,8 +5,11 @@
       <img :src="image" alt="product-photo">
     </div>
     <div class="product-styles">
-      <div class="product-styles-style" v-for="(style, index) in styles" :key="index">{{ style }}</div>
+      <div class="product-styles-style" v-for="(style, index) in styles" :key="index">
+        {{ style }}
+      </div>
     </div>
+    <div class="product-price">{{ price }}</div>
   </div>
 </template>
 
@@ -17,7 +20,8 @@ export default {
     image: String,
     styles: Array,
     magazine: String,
-    gender: String
+    gender: String,
+    price: String
   }
 }
 </script>
@@ -38,6 +42,7 @@ export default {
   &-image {
     display: flex;
     justify-content: center;
+    padding-top: 5px;
     img {
       max-height: 250px;
     }
@@ -55,6 +60,10 @@ export default {
       margin: 5px;
       text-transform: capitalize;
     }
+  }
+  &-price {
+    padding-top: 15px;
+    font-weight: bold;
   }
 }
 </style>

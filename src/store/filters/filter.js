@@ -47,6 +47,11 @@ export default {
             id: 3,
             title: 'Aki loh',
             checked: false
+          },
+          {
+            id: 4,
+            title: 'Johny Dep',
+            checked: false
           }
         ]
       },
