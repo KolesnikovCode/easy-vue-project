@@ -70,22 +70,23 @@ export default {
       // Получаем все названия активных фильтров по стилям в нижнем регистре
       const activeStylesOptions = stylesCheckedOptions.map(opt => opt.title.toLowerCase());
 
-      const filteredMagazineProducts = this.products.filter(product => {
+      const filteredMagazineProducts = activeMagazineOptions.length ? this.products.filter(product => {
         return activeMagazineOptions.some(opt => {
           return opt == product.magazine.toLowerCase();
         });
-      });
+      }) : this.products;
 
-      const productsAfterMagazineFilters = filteredMagazineProducts.length ? filteredMagazineProducts : this.products;
-
-      const filteredStylesProducts = productsAfterMagazineFilters.filter(prod => {
+      const filteredStylesProducts = filteredMagazineProducts.filter(prod => {
         return activeStylesOptions.some(opt => prod.styles.some(style => style === opt));
       });
 
-      if (!filteredStylesProducts.length) {
-        return productsAfterMagazineFilters;
+      if (activeStylesOptions.length) {
+        return filteredStylesProducts;
       }
 
+      if (!filteredStylesProducts.length) {
+        return filteredMagazineProducts;
+      }
 
       return filteredStylesProducts;
     }
@@ -140,6 +141,7 @@ export default {
         cursor: pointer;
         display: flex;
         align-items: center;
+        user-select: none;
         span {
           margin-left: 4px;
         }
