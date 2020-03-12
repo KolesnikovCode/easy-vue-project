@@ -31,7 +31,7 @@
               :price="product.price"
             />
           </div>
-          <p v-else>Ничего не найдено! ;(<br>Попробуйте изменить фильтр.</p>
+          <p class="not-found" v-else>Ничего не найдено! ;(<br>Попробуйте изменить фильтр.</p>
         </div>
       </div>
     </div>
@@ -121,6 +121,7 @@ export default {
       box-sizing: border-box;
       border-radius: 5px;
       padding: 0 10px;
+      font-weight: bold;
       background: #dbdbdb;
       cursor: pointer;
       user-select: none;
@@ -163,6 +164,10 @@ export default {
       display: flex;
       flex-wrap: wrap;
       margin: -10px;
+    }
+    .not-found {
+      font-weight: bold;
+      letter-spacing: 2px;
     }
   }
 }

@@ -19,8 +19,10 @@ export default {
 </script>
 
 <style lang="scss">
+@import './assets/font/gilroy.scss';
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Gilroy';
 }
 
 .container {
