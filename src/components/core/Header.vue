@@ -39,7 +39,7 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 18px 0;
+        padding: 15px 0;
     }
     .logo {
         text-decoration: none;

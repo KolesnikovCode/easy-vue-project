@@ -7,7 +7,7 @@
 
           <div class="filter" v-for="(filter, index) in filters" :key="filter.id">
 
-            <div class="filter-header" @click="toggleFilter(index)">
+            <div class="filter-header" @click="toggleOpenFilter(index)">
               {{ filter.title }}
             </div>
 
@@ -45,7 +45,7 @@ import ProductCard from '../components/core/Product-card';
 
 export default {
   methods: {
-    toggleFilter(filterIndex) {
+    toggleOpenFilter(filterIndex) {
       this.$store.commit('toggleOpenFilter', filterIndex);
     },
     magazineFilter(products, filters) {

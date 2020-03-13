@@ -68,6 +68,17 @@ export default {
       text-transform: capitalize;
     }
   }
+  &-genders {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -5px;
+    padding-top: 10px;
+    &-gender {
+      user-select: none;
+      margin: 5px;
+      text-transform: capitalize;
+    }
+  }
   &-price {
     padding-top: 15px;
     font-weight: bold;
