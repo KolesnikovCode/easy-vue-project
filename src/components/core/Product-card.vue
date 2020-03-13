@@ -9,6 +9,11 @@
         {{ style }}
       </div>
     </div>
+    <div class="product-genders">
+      <div class="product-genders-gender" v-for="(gender, index) in genders" :key="index">
+        {{ gender }}
+      </div>
+    </div>
     <div class="product-price">{{ price }}</div>
   </div>
 </template>
@@ -20,7 +25,7 @@ export default {
     image: String,
     styles: Array,
     magazine: String,
-    gender: String,
+    genders: Array,
     price: String
   }
 }

@@ -29,6 +29,7 @@
               :image="product.image"
               :styles="product.styles"
               :price="product.price"
+              :genders="product.gender"
             />
           </div>
           <p class="not-found" v-else>Ничего не найдено! ;(<br>Попробуйте изменить фильтр.</p>
@@ -47,26 +48,51 @@ export default {
     toggleFilter(filterIndex) {
       this.$store.commit('toggleOpenFilter', filterIndex);
     },
-    magazineFilter() {
-      const magazineFilters = this.filters.find(flrt => flrt.title === 'Магазины').options;
+    magazineFilter(products, filters) {
+      const magazineFilters = filters.find(flrt => flrt.title === 'Магазины').options;
       const magazineCheckedOptions = magazineFilters.filter(flrt => flrt.checked);
       const activeMagazineOptions = magazineCheckedOptions.map(opt => opt.title.toLowerCase());
-      
-      return activeMagazineOptions.length ? this.products.filter(product => {
+
+      const filteredGenderProducts = products.filter(product => {
         return activeMagazineOptions.some(opt => {
           return opt == product.magazine.toLowerCase();
         });
-      }) : this.products;
+      });
+      const res = activeMagazineOptions.length ? filteredGenderProducts : products;
+
+      return {
+        products: res,
+        filters
+      }
     },
-    stylesFilter(products) {
-      const stylesFilters = this.filters.find(flrt => flrt.title === 'Стиль').options;
+    stylesFilter({ products, filters }) {
+      const stylesFilters = filters.find(flrt => flrt.title === 'Стиль').options;
       const stylesCheckedOptions = stylesFilters.filter(flrt => flrt.checked);
       const activeStylesOptions = stylesCheckedOptions.map(opt => opt.title.toLowerCase());
 
       const filteredStylesProducts = products.filter(prod => {
         return activeStylesOptions.some(opt => prod.styles.some(style => style === opt));
       });
-      return filteredStylesProducts.length ? filteredStylesProducts : products;
+      
+      const res = activeStylesOptions.length ? filteredStylesProducts : products;
+
+      return {
+        products: res,
+        filters
+      }
+    },
+    genderFilter({ products, filters }) {
+      const genderFilters = filters.find(flrt => flrt.title === 'Гендер').options;
+      const genderCheckedOptions = genderFilters.filter(flrt => flrt.checked);
+      const activeGenderOptions = genderCheckedOptions.map(opt => opt.title.toLowerCase());
+
+      const filteredGenderProducts = products.filter(prod => {
+        return activeGenderOptions.some(opt => prod.gender.some(gender => gender.toLowerCase() === opt));
+      });
+
+      const res = activeGenderOptions.length ? filteredGenderProducts : products;
+
+      return res;
     }
   },
   computed: {
@@ -75,7 +101,7 @@ export default {
       products: state => state.ProductsModule.products
     }),
     filteredProducts() {
-      return this.stylesFilter(this.magazineFilter()) ;
+      return this.genderFilter(this.stylesFilter(this.magazineFilter(this.products, this.filters)));
     }
   },
   components: {
@@ -111,6 +137,7 @@ export default {
       background: #dbdbdb;
       cursor: pointer;
       user-select: none;
+      z-index: 10;
     }
     &-body {
       display: flex;
@@ -124,6 +151,7 @@ export default {
       height: fit-content;
       max-height: 1000px;
       transition: all .2s linear;
+      z-index: 9;
       label {
         padding: 5px;
         cursor: pointer;
