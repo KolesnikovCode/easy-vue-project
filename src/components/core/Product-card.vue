@@ -38,7 +38,7 @@ export default {
     transform: scale(1.015);
   }
   &-title {
-    font-weight: bold;
+    font-size: 14px;
   }
   &-image {
     display: flex;

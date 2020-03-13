@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <div class="container">
-      <h1 @click="foo">Каталог</h1>
+      <h1>Каталог</h1>
       <div class="configurator">
         <div class="configurator-filters">
 
@@ -47,8 +47,26 @@ export default {
     toggleFilter(filterIndex) {
       this.$store.commit('toggleOpenFilter', filterIndex);
     },
-    foo() {
+    magazineFilter() {
+      const magazineFilters = this.filters.find(flrt => flrt.title === 'Магазины').options;
+      const magazineCheckedOptions = magazineFilters.filter(flrt => flrt.checked);
+      const activeMagazineOptions = magazineCheckedOptions.map(opt => opt.title.toLowerCase());
       
+      return activeMagazineOptions.length ? this.products.filter(product => {
+        return activeMagazineOptions.some(opt => {
+          return opt == product.magazine.toLowerCase();
+        });
+      }) : this.products;
+    },
+    stylesFilter(products) {
+      const stylesFilters = this.filters.find(flrt => flrt.title === 'Стиль').options;
+      const stylesCheckedOptions = stylesFilters.filter(flrt => flrt.checked);
+      const activeStylesOptions = stylesCheckedOptions.map(opt => opt.title.toLowerCase());
+
+      const filteredStylesProducts = products.filter(prod => {
+        return activeStylesOptions.some(opt => prod.styles.some(style => style === opt));
+      });
+      return filteredStylesProducts.length ? filteredStylesProducts : products;
     }
   },
   computed: {
@@ -57,39 +75,7 @@ export default {
       products: state => state.ProductsModule.products
     }),
     filteredProducts() {
-      // Находим опции фильтра по магазинам
-      const magazineFilters = this.filters.find(flrt => flrt.title === 'Магазины').options;
-      // Находим все активные опции в фильтре магазинов
-      const magazineCheckedOptions = magazineFilters.filter(flrt => flrt.checked);
-      // Получаем все названия активных фильтров магазинов в нижнем регистре
-      const activeMagazineOptions = magazineCheckedOptions.map(opt => opt.title.toLowerCase());
-
-      // Находим опции фильтра по стилям
-      const stylesFilters = this.filters.find(flrt => flrt.title === 'Стиль').options;
-      // Находим все активные опции в фильтре стилей
-      const stylesCheckedOptions = stylesFilters.filter(flrt => flrt.checked);
-      // Получаем все названия активных фильтров по стилям в нижнем регистре
-      const activeStylesOptions = stylesCheckedOptions.map(opt => opt.title.toLowerCase());
-
-      const filteredMagazineProducts = activeMagazineOptions.length ? this.products.filter(product => {
-        return activeMagazineOptions.some(opt => {
-          return opt == product.magazine.toLowerCase();
-        });
-      }) : this.products;
-
-      const filteredStylesProducts = filteredMagazineProducts.filter(prod => {
-        return activeStylesOptions.some(opt => prod.styles.some(style => style === opt));
-      });
-
-      if (activeStylesOptions.length) {
-        return filteredStylesProducts;
-      }
-
-      if (!filteredStylesProducts.length) {
-        return filteredMagazineProducts;
-      }
-
-      return filteredStylesProducts;
+      return this.stylesFilter(this.magazineFilter()) ;
     }
   },
   components: {
@@ -121,7 +107,7 @@ export default {
       box-sizing: border-box;
       border-radius: 5px;
       padding: 0 10px;
-      font-weight: bold;
+      font-size: 17px;
       background: #dbdbdb;
       cursor: pointer;
       user-select: none;
