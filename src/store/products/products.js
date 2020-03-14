@@ -83,13 +83,22 @@ export default {
         price: '27 420 ₽'
       },
       {
-        id: 8,
+        id: 9,
             title: 'Комплект H&M женский',
           image: 'https://i.pinimg.com/originals/91/ad/0b/91ad0baad4a28abcfc09d140adc82379.jpg',
           styles: ['denim'],
           magazine: 'h&m',
           gender: ['Женский'],
-          price: '27 420 ₽'
+          price: '21 200 ₽'
+      },
+      {
+        id: 10,
+        title: 'Комплект H&M женский',
+        image: 'https://a.lmcdn.ru/pi/img600x866/T/O/TO029EWGMPZ9_9362631_2_v1_2x.jpg',
+        styles: ['denim'],
+        magazine: 'h&m',
+        gender: ['Женский'],
+        price: '22 124 ₽'
       }
     ]
   }
