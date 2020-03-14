@@ -81,6 +81,15 @@ export default {
         magazine: 'h&m',
         gender: ['Унисекс'],
         price: '27 420 ₽'
+      },
+      {
+        id: 8,
+            title: 'Комплект H&M женский',
+          image: 'https://i.pinimg.com/originals/91/ad/0b/91ad0baad4a28abcfc09d140adc82379.jpg',
+          styles: ['denim'],
+          magazine: 'h&m',
+          gender: ['Женский'],
+          price: '27 420 ₽'
       }
     ]
   }

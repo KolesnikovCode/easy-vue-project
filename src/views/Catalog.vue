@@ -71,7 +71,7 @@ export default {
       const activeStylesOptions = stylesCheckedOptions.map(opt => opt.title.toLowerCase());
 
       const filteredStylesProducts = products.filter(prod => {
-        return activeStylesOptions.some(opt => prod.styles.some(style => style === opt));
+        return activeStylesOptions.some(opt => prod.styles.some(style => style.toLowerCase() === opt));
       });
       
       const res = activeStylesOptions.length ? filteredStylesProducts : products;

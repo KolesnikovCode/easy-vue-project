@@ -10,6 +10,7 @@
       </div>
     </div>
     <div class="product-genders">
+      <div class="product-genders-designation"><small>Гендер:</small></div>
       <div class="product-genders-gender" v-for="(gender, index) in genders" :key="index">
         {{ gender }}
       </div>
@@ -73,6 +74,7 @@ export default {
     flex-wrap: wrap;
     margin: -5px;
     padding-top: 10px;
+    align-items: center;
     &-gender {
       user-select: none;
       margin: 5px;
