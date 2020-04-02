@@ -1,10 +1,17 @@
 export default {
   state: {
-    user: {
-      id: 142,
-      name: 'Сталкер',
-      surname: 'Иванович',
-      photo: 'https://stalkerportaal.ru/avatar/00/76/22647373.jpg'
+    user: null
+  },
+  mutations: {
+    SET_USER: (state, payload) => {
+      state.user = {
+        id: payload.uid,
+        name: payload.displayName,
+        photo: payload.photoURL
+      }
+    },
+    UNSET_USER: state => {
+      state.user = null
     }
   }
 };

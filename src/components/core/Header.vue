@@ -6,12 +6,13 @@
                 <nav>
                     <router-link to="/">Главная</router-link>
                     <router-link to="/catalog">Каталог</router-link>
-                    <router-link class="cabinet-link" to="/cabinet">
+                    <router-link class="cabinet-link" to="/cabinet" v-if="user">
                         <span>Кабинет</span>
                         <div class="user" :title="`${user.name} ${user.surname}`">
                             <img :src="user.photo" alt="">
                         </div>
                     </router-link>
+                    <div class="sign-btn" @click="signIn" v-if="!user">Войти через google</div>
                 </nav>
             </div>
         </div>
@@ -20,13 +21,22 @@
 
 <script>
 import { mapState } from 'vuex';
+import firebase from 'firebase';
 
 export default {
-    computed: {
-        ...mapState({
-            user: state => state.User.user
-        })
+  computed: {
+    ...mapState({
+      user: state => state.User.user,
+    })
+  },
+  methods: {
+    signIn() {
+      let provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().signInWithPopup(provider).then(res => {
+        console.log(res);
+      })
     }
+  }
 }
 </script>
 
@@ -97,6 +107,20 @@ export default {
                 }
             }
         }
+    .sign-btn {
+      color: #fff;
+      letter-spacing: 3px;
+      font-size: 13px;
+      text-transform: uppercase;
+      font-weight: normal;
+      transition: all .2s ease;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      &:hover {
+        color: #ffd666;
+      }
     }
+  }
 }
 </style>

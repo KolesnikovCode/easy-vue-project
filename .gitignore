@@ -5,6 +5,7 @@ node_modules
 # local env files
 .env.local
 .env.*.local
+/src/firebase/_firebaseAPIkey.js
 
 # Log files
 npm-debug.log*
