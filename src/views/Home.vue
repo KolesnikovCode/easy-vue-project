@@ -95,7 +95,7 @@ export default {
       font-size: 20px;
       bottom: 40px;
       @media screen and (max-width: 500px) {
-        margin-top: 50px;
+        bottom: 85px;
       }
     }
   }
