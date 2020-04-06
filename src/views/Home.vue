@@ -6,22 +6,53 @@
           <img src="../assets/main/logo.svg" alt="">
         </div>
         <div class="home-center-btn animated fadeInLeft">
-          <button type="button">начать</button>
+          <button type="button" @click="toggleModal">начать</button>
         </div>
         <div class="home-center-description animated fadeInRight">
-          Вы находитесь на самой удобной платформе по подбору одежды!<br />
           easy - меняться, легко!
         </div>
       </div>
     </div>
+
+    <transition name="fade" mode="out-in">
+      <Modal v-if="isModalOpen">
+        <div class="modal-content">
+          <transition name="fade" mode="out-in">
+            <ModalStep1 v-if="step === 1" key="step"/>
+            <ModalStep2 v-if="step === 2" key="step"/>
+          </transition>
+        </div>
+      </Modal>
+    </transition>
+
   </div>
 </template>
 
 <script>
 import 'animate.css';
+import { mapState } from 'vuex';
+import Modal from '../components/core/Modal';
+
+import ModalStep1 from '../components/modalSteps/ModalStep1';
+import ModalStep2 from '../components/modalSteps/ModalStep2';
 
 export default {
-
+  components: {
+    Modal,
+    ModalStep1,
+    ModalStep2
+  },
+  methods: {
+    toggleModal() {
+      this.$store.commit('TOGGLE_MODAL');
+    }
+  },
+  computed: {
+    ...mapState({
+      isModalOpen: state => state.Modal.isModalOpen,
+      step: state => state.GeneralForm.step
+    })
+  }
 }
 </script>
 
@@ -31,7 +62,7 @@ export default {
   width: 100vw;
   min-height: 550px;
   max-height: 100vh;
-  background: url('../assets/main/main-bg.png');
+  background: url('../assets/main/main-bg.svg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -99,5 +130,17 @@ export default {
       }
     }
   }
+  .modal-content {
+    h3 {
+      letter-spacing: 3px;
+    }
+  }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
 }
 </style>

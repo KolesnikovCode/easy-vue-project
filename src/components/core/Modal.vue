@@ -1,0 +1,40 @@
+<template>
+  <div class="modal" @mousedown.self.once="toggleModal">
+    <div class="modal-body">
+      <slot></slot>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  methods: {
+    toggleModal() {
+      this.$store.commit('TOGGLE_MODAL');
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &-body {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all .2s ease;
+    background: #fff;
+    padding: 15px;
+  }
+}
+</style>

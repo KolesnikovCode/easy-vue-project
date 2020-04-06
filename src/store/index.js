@@ -4,6 +4,8 @@ import FiltersModule from './filters/filter';
 import ProductsModule from './products/products';
 import User from './user/user';
 import Common from './common/common';
+import Modal from './modal/modal';
+import GeneralForm from './generalForm/generalForm';
 
 Vue.use(Vuex)
 
@@ -12,6 +14,8 @@ export default new Vuex.Store({
     FiltersModule,
     ProductsModule,
     User,
-    Common
+    Common,
+    Modal,
+    GeneralForm
   }
 })
