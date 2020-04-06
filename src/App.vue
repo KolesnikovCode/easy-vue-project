@@ -1,9 +1,9 @@
 <template>
   <div id="app" v-if="!isLoaded">
-    <Loader />
+    <EasyLoader />
   </div>
   <div v-else>
-    <Header />
+    <!-- <Header /> -->
     <transition name="fade" mode="out-in">
       <router-view/>
     </transition>
@@ -14,13 +14,13 @@
 import { mapState } from 'vuex';
 import 'normalize.css';
 import firebase from 'firebase';
-import Header from './components/core/Header';
-import Loader from './components/core/Loader';
+// import Header from './components/core/Header';
+import EasyLoader from './components/core/EasyLoader';
 
 export default {
   components: {
-    Header,
-    Loader
+    // Header,
+    EasyLoader
   },
   methods: {
     checkUser() {
@@ -29,7 +29,6 @@ export default {
           this.$store.commit('SET_USER', user);
           this.$store.commit('SET_IS_LOADED', true);
         } else {
-          console.log('no user');
           this.$store.commit('SET_IS_LOADED', true);
         }
       });
@@ -48,6 +47,10 @@ export default {
 
 <style lang="scss">
 @import './assets/font/gilroy.scss';
+
+html, body {
+  overflow: hidden;
+}
 
 #app {
   font-family: 'Gilroy';
