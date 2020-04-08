@@ -25,7 +25,6 @@ export default {
   left: 0;
   background: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
-  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,8 +32,9 @@ export default {
     border-radius: 10px;
     overflow: hidden;
     transition: all .2s ease;
-    background: #fff;
+    background: none;
     padding: 15px;
+    margin: 20px;
   }
 }
 </style>

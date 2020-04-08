@@ -49,7 +49,10 @@ export default {
 @import './assets/font/gilroy.scss';
 
 html, body {
+  max-height: 100vh;
+  max-width: 100vw;
   overflow: hidden;
+  overflow-y: auto;
 }
 
 #app {

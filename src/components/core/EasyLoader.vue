@@ -1,11 +1,15 @@
 <template>
   <div class="loader-wrapper">
-    <div class="lds-facebook">
-      <div>e</div>
-      <div>a</div>
-      <div>s</div>
-      <div>y</div>
+    <div class="logo">
+      <img src="@/assets/loader/logo.svg" alt="">
     </div>
+    <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
   </div>
 </template>
 
@@ -18,55 +22,81 @@
   height: 100vh;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   background: rgb(0, 0, 0);
   z-index: 500;
+  .logo {
+    margin-bottom: -30px;
+  }
 }
 
-.lds-facebook {
+.lds-ellipsis {
   display: inline-block;
   position: relative;
-    width: 80px;
+  width: 104px;
   height: 80px;
-  font-family: 'Gilroy';
 }
-.lds-facebook div {
-  display: inline-block;
+.lds-ellipsis div {
   position: absolute;
-  left: 8px;
-  width: 22px;
-  background: linear-gradient(#C400C8, #57F5FF);
-  color: #fff;
-  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+background: linear-gradient(#C400C8, #57F5FF);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
-.lds-facebook div:nth-child(1) {
+.lds-ellipsis div:nth-child(1) {
   left: 8px;
-  animation-delay: -0.24s;
+  animation: lds-ellipsis1 0.6s infinite;
 }
-.lds-facebook div:nth-child(2) {
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
   left: 32px;
-  animation-delay: -0.12s;
+  animation: lds-ellipsis2 0.6s infinite;
 }
-.lds-facebook div:nth-child(3) {
+.lds-ellipsis div:nth-child(4) {
   left: 56px;
-  animation-delay: 0;
+  animation: lds-ellipsis2 0.6s infinite;
 }
-.lds-facebook div:nth-child(4) {
+.lds-ellipsis div:nth-child(5) {
   left: 80px;
-  animation-delay: 0.12s;
+  animation: lds-ellipsis4 0.6s infinite;
 }
-@keyframes lds-facebook {
+@keyframes lds-ellipsis1 {
   0% {
-    top: 8px;
-    height: 64px;
+    transform: scale(0);
   }
-  50%, 100% {
-    top: 24px;
-    height: 32px;
+  100% {
+    transform: scale(1);
   }
 }
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis4 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
 </style>

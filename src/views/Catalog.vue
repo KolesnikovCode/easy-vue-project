@@ -1,39 +1,37 @@
 <template>
-  <div class="about">
-    <div class="container">
-      <h1>Каталог</h1>
-      <div class="configurator">
-        <div class="configurator-filters">
+  <div class="container">
+    <h1>Каталог</h1>
+    <div class="configurator">
+      <div class="configurator-filters">
 
-          <div class="filter" v-for="(filter, index) in filters" :key="filter.id">
+        <div class="filter" v-for="(filter, index) in filters" :key="filter.id">
 
-            <div class="filter-header" @click="toggleOpenFilter(index)">
-              {{ filter.title }}
-            </div>
+          <div class="filter-header" @click="toggleOpenFilter(index)">
+            {{ filter.title }}
+          </div>
 
-            <div class="filter-body" :class="filter.idOpened ? '' : 'filter-body-closed'">
-              <label v-for="option in filter.options" :key="option.id">
-                <input type="checkbox" v-model="option.checked">
-                <span>{{ option.title }}</span>
-              </label>
-            </div>
-
+          <div class="filter-body" :class="filter.idOpened ? '' : 'filter-body-closed'">
+            <label v-for="option in filter.options" :key="option.id">
+              <input type="checkbox" v-model="option.checked">
+              <span>{{ option.title }}</span>
+            </label>
           </div>
 
         </div>
-        <div class="configurator-content">
-          <div class="products" v-if="filteredProducts.length > 0">
-            <ProductCard
-              v-for="(product, index) in filteredProducts" :key="index"
-              :title="product.title"
-              :image="product.image"
-              :styles="product.styles"
-              :price="product.price"
-              :genders="product.gender"
-            />
-          </div>
-          <p class="not-found" v-else>Ничего не найдено! ;(<br>Попробуйте изменить фильтр.</p>
+
+      </div>
+      <div class="configurator-content">
+        <div class="products" v-if="filteredProducts.length > 0">
+          <ProductCard
+            v-for="(product, index) in filteredProducts" :key="index"
+            :title="product.title"
+            :image="product.image"
+            :styles="product.styles"
+            :price="product.price"
+            :genders="product.gender"
+          />
         </div>
+        <p class="not-found" v-else>Ничего не найдено! ;(<br>Попробуйте изменить фильтр.</p>
       </div>
     </div>
   </div>
@@ -115,6 +113,9 @@ export default {
   display: grid;
   grid-template-columns: 240px 1fr;
   padding-top: 40px;
+  @media screen and (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
   &-filters {
     display: flex;
     flex-direction: column;
@@ -174,10 +175,16 @@ export default {
   }
   &-content {
     padding: 0 20px;
+    @media screen and (max-width: 500px) {
+      padding-top: 40px;
+    }
     .products {
       display: flex;
       flex-wrap: wrap;
       margin: -10px;
+      @media screen and (max-width: 500px) {
+        justify-content: center;
+      }
     }
     .not-found {
       font-weight: bold;
