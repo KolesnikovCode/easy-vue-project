@@ -1,12 +1,16 @@
 <template>
-  <div id="app" v-if="!isLoaded">
-    <EasyLoader />
-  </div>
-  <div v-else>
-    <!-- <Header /> -->
+  <div>
     <transition name="fade" mode="out-in">
-      <router-view/>
+      <div id="app" v-if="!isLoaded">
+        <EasyLoader />
+      </div>
     </transition>
+    <div id="app" v-if="isLoaded">
+      <!-- <Header /> -->
+      <transition name="fade" mode="in-out">
+        <router-view/>
+      </transition>
+    </div>
   </div>
 </template>
 

@@ -40,8 +40,8 @@ export default {
     width: 240px;
     height: 180px;
     border-radius: 43px;
-    background: rgba(255, 255, 255, 0.19);
-    backdrop-filter: blur(90px);
+    background: rgba(255, 255, 255, 0.3);
+    // backdrop-filter: blur(90px);
     border: none;
     color: #fff;
     font-size: 30px;
@@ -49,10 +49,10 @@ export default {
     outline: none;
     transition: all .2s ease;
     &:hover {
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.4);
     }
     &:active {
-      background: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.5);
     }
     &:first-child {
       margin-right: 100px;
