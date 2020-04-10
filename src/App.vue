@@ -68,6 +68,7 @@ html, body {
   margin: 0 auto;
   padding: 0 25px;
   width: 100%;
+  box-sizing: border-box;
 }
 
 // animation
