@@ -1,45 +1,49 @@
 <template>
-  <div class="container">
-    <h1>Каталог</h1>
-    <div class="configurator">
-      <div class="configurator-filters">
+  <div class="catalog-page">
+    <div class="container">
+      <h1>Каталог</h1>
+      <div class="configurator">
+        <div class="configurator-filters">
 
-        <div class="filter" v-for="(filter, index) in filters" :key="filter.id">
+          <div class="filter" v-for="(filter, index) in filters" :key="filter.id">
 
-          <div class="filter-header" @click="toggleOpenFilter(index)">
-            {{ filter.title }}
-          </div>
+            <div class="filter-header" @click="toggleOpenFilter(index)">
+              {{ filter.title }}
+            </div>
 
-          <div class="filter-body" :class="filter.idOpened ? '' : 'filter-body-closed'">
-            <label v-for="option in filter.options" :key="option.id">
-              <input type="checkbox" v-model="option.checked">
-              <span>{{ option.title }}</span>
-            </label>
+            <div class="filter-body" :class="filter.idOpened ? '' : 'filter-body-closed'">
+              <label v-for="option in filter.options" :key="option.id">
+                <input type="checkbox" v-model="option.checked">
+                <span>{{ option.title }}</span>
+              </label>
+            </div>
+
           </div>
 
         </div>
-
-      </div>
-      <div class="configurator-content">
-        <div class="products" v-if="filteredProducts.length > 0">
-          <ProductCard
-            v-for="(product, index) in filteredProducts" :key="index"
-            :title="product.title"
-            :image="product.image"
-            :styles="product.styles"
-            :price="product.price"
-            :genders="product.gender"
-          />
+        <div class="configurator-content">
+          <div class="products" v-if="filteredProducts.length > 0">
+            <ProductCard
+              v-for="(product, index) in filteredProducts" :key="index"
+              :title="product.title"
+              :image="product.image"
+              :styles="product.styles"
+              :price="product.price"
+              :genders="product.gender"
+            />
+          </div>
+          <p class="not-found" v-else>Ничего не найдено! ;(<br>Попробуйте изменить фильтр.</p>
         </div>
-        <p class="not-found" v-else>Ничего не найдено! ;(<br>Попробуйте изменить фильтр.</p>
       </div>
     </div>
+    <Footer class="footer" />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import ProductCard from '../components/core/Product-card';
+import Footer from '../components/core/Footer';
 
 export default {
   methods: {
@@ -103,16 +107,28 @@ export default {
     }
   },
   components: {
-    ProductCard
+    ProductCard,
+    Footer
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.catalog-page {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 100vh;
+}
+
+.container {
+  flex: 1 1 auto;
+}
+
 .configurator {
   display: grid;
   grid-template-columns: 240px 1fr;
-  padding-top: 40px;
+  padding: 40px 0;
   @media screen and (max-width: 500px) {
     grid-template-columns: 1fr;
   }

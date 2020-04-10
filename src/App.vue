@@ -1,13 +1,13 @@
 <template>
   <div>
-    <transition name="fade" mode="out-in">
+    <transition name="fade">
       <div id="app" v-if="!isLoaded">
         <EasyLoader />
       </div>
     </transition>
     <div id="app" v-if="isLoaded">
       <!-- <Header /> -->
-      <transition name="fade" mode="in-out">
+      <transition name="fade" mode="out-in">
         <router-view/>
       </transition>
     </div>
@@ -66,7 +66,8 @@ html, body {
 .container {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 25px;
+  width: 100%;
 }
 
 // animation

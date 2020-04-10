@@ -4,6 +4,9 @@ import router from './router'
 import store from './store'
 import firebase from 'firebase';
 import { firebaseConfig } from './firebase/firebaseConfig';
+import feather from 'vue-icon';
+
+Vue.use(feather, 'v-icon');
 
 firebase.initializeApp(firebaseConfig);
 

@@ -1,6 +1,7 @@
 
 <template>
   <div class="modal-step">
+    <v-icon @click.native="goToPrevStep" class="go-back" name="chevron-left" />
     <div class="btns">
       <button class="btn" type="button" @click.once="chosePartyStyle">на вечеринку</button>
       <button class="btn" type="button" @click.once="choseOfficeStyle">в офис</button>
@@ -29,8 +30,13 @@ export default {
       this.$store.commit('SET_ANY_STYLE');
       this.goToCatalog();
     },
+    goToPrevStep() {
+      this.$store.commit('GO_TO_BACK_STEP');
+    },
     goToCatalog() {
       this.$store.commit('SET_IS_LOADED', false);
+      this.$store.commit('TOGGLE_MODAL');
+      this.$store.commit('GO_TO_FIRST_MODAL_STEP');
       setTimeout(() => {
         this.$store.commit('SET_IS_LOADED', true);
         this.$router.push('/catalog');
@@ -43,6 +49,24 @@ export default {
 <style lang="scss" scoped>
 .modal-step {
   font-family: Gilroy;
+  position: relative;
+  .go-back {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: -60px;
+    top: calc(50% - 20px);
+    color: #fff;
+    opacity: .5;
+    transition: all .2s ease;
+    cursor: pointer;
+    &:hover {
+      opacity: .7;
+    }
+    &:active {
+      opacity: .9;
+    }
+  }
   .btns {
     display: flex;
     justify-content: center;

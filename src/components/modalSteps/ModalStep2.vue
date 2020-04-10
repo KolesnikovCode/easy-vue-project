@@ -1,6 +1,7 @@
 
 <template>
   <div class="modal-step">
+    <v-icon @click.native="goToPrevStep" class="go-back" name="chevron-left" />
     <div class="btns">
       <button class="btn" type="button" @click.once="choseSmall">для стройных</button>
       <button class="btn" type="button" @click.once="choseStandart">для средних</button>
@@ -23,6 +24,9 @@ export default {
     },
     goToNextStep() {
       this.$store.commit('GO_TO_NEXT_STEP');
+    },
+    goToPrevStep() {
+      this.$store.commit('GO_TO_BACK_STEP');
     }
   }
 }
@@ -31,6 +35,24 @@ export default {
 <style lang="scss" scoped>
 .modal-step {
   font-family: Gilroy;
+  position: relative;
+  .go-back {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: -60px;
+    top: calc(50% - 20px);
+    color: #fff;
+    opacity: .5;
+    transition: all .2s ease;
+    cursor: pointer;
+    &:hover {
+      opacity: .7;
+    }
+    &:active {
+      opacity: .9;
+    }
+  }
   .btns {
     display: flex;
     justify-content: center;
