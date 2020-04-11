@@ -1,5 +1,5 @@
 <template>
-    <div class="header">
+    <div class="header" v-click-outside="closeMobileMenu">
         <div class="container">
             <div class="header-content">
                 <router-link to="/" class="logo">EASY</router-link>
@@ -14,8 +14,8 @@
                     </router-link>
                     <div class="sign-btn" @click="signIn" v-if="!user">Войти через google</div>
                 </nav>
-                <div class="burger" @click.stop="isOpenMobileMenu = !isOpenMobileMenu">|||</div>
-                <div :class="isOpenMobileMenu ? 'mobile-menu opened' : 'mobile-menu'" v-click-outside="closeMobileMenu">
+                <div class="burger" @click.stop.capture="isOpenMobileMenu = !isOpenMobileMenu">|||</div>
+                <div :class="isOpenMobileMenu ? 'mobile-menu opened' : 'mobile-menu'">
                     <router-link to="/" @click.native="isOpenMobileMenu = false">Главная</router-link>
                     <router-link to="/catalog" @click.native="isOpenMobileMenu = false">Каталог</router-link>
                     <router-link class="cabinet-link" to="/cabinet" v-if="user" @click.native="isOpenMobileMenu = false">
