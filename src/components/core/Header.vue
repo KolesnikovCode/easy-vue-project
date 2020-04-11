@@ -14,7 +14,7 @@
                     </router-link>
                     <div class="sign-btn" @click="signIn" v-if="!user">Войти через google</div>
                 </nav>
-                <div class="burger" @click.stop.capture="isOpenMobileMenu = !isOpenMobileMenu">|||</div>
+                <div class="burger" @click="toggleMobileMenu">|||</div>
                 <div :class="isOpenMobileMenu ? 'mobile-menu opened' : 'mobile-menu'">
                     <router-link to="/" @click.native="isOpenMobileMenu = false">Главная</router-link>
                     <router-link to="/catalog" @click.native="isOpenMobileMenu = false">Каталог</router-link>
@@ -50,6 +50,13 @@ export default {
       firebase.auth().signInWithPopup(provider).then(res => {
         console.log(res);
       })
+    },
+    toggleMobileMenu() {
+      if (this.isOpenMobileMenu) {
+        this.isOpenMobileMenu = false;
+        return;
+      }
+      this.isOpenMobileMenu = true;
     },
     closeMobileMenu() {
       if (this.isOpenMobileMenu) {
