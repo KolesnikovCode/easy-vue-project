@@ -1,25 +1,23 @@
 <template>
-    <div class="header">
-        <div class="container">
-          <div class="cabinet">
-            
-            <div class="user">
+  <div class="container">
+    <div class="cabinet">
+      
+      <div class="user">
 
-              <div class="user-photo">
-                <img :src="user.photo" alt="">
-              </div>
-
-              <div class="user-name">
-                {{ user.name }}
-              </div>
-
-            </div>
-
-            <button type="button" @click.prevent.once="signOut">Выйти</button>
-
-          </div>
+        <div class="user-photo">
+          <img :src="user.photo" alt="">
         </div>
+
+        <div class="user-name">
+          {{ user.name }}
+        </div>
+
+      </div>
+
+      <button type="button" @click.prevent.once="signOut">Выйти</button>
+
     </div>
+  </div>
 </template>
 
 <script>
@@ -51,6 +49,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 60px;
   .user {
     padding-top: 40px;
     display: flex;

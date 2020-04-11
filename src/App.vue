@@ -1,12 +1,12 @@
 <template>
   <div>
     <transition name="fade">
-      <div id="app" v-if="!isLoaded">
+      <div id="app" v-if="!isLoaded" v-cloak>
         <EasyLoader />
       </div>
     </transition>
-    <div id="app" v-if="isLoaded">
-      <!-- <Header /> -->
+    <div id="app" v-if="isLoaded" v-cloak>
+      <Header />
       <transition name="fade" mode="out-in">
         <router-view/>
       </transition>
@@ -18,12 +18,12 @@
 import { mapState } from 'vuex';
 import 'normalize.css';
 import firebase from 'firebase';
-// import Header from './components/core/Header';
+import Header from './components/core/Header';
 import EasyLoader from './components/core/EasyLoader';
 
 export default {
   components: {
-    // Header,
+    Header,
     EasyLoader
   },
   methods: {

@@ -119,6 +119,7 @@ export default {
   flex-direction: column;
   flex: 1 1 auto;
   min-height: 100vh;
+  padding-top: 60px;
 }
 
 .container {
