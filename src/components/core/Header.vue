@@ -14,7 +14,7 @@
                     </router-link>
                     <div class="sign-btn" @click="signIn" v-if="!user">Войти через google</div>
                 </nav>
-                <div class="burger" @click="isOpenMobileMenu = !isOpenMobileMenu">|||</div>
+                <div class="burger" @click.stop="isOpenMobileMenu = !isOpenMobileMenu">|||</div>
                 <div :class="isOpenMobileMenu ? 'mobile-menu opened' : 'mobile-menu'" v-click-outside="closeMobileMenu">
                     <router-link to="/" @click.native="isOpenMobileMenu = false">Главная</router-link>
                     <router-link to="/catalog" @click.native="isOpenMobileMenu = false">Каталог</router-link>
