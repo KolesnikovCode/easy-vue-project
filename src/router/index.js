@@ -1,7 +1,8 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Catalog from '../views/Catalog.vue'
+import Vue from 'vue';
+import firebase from 'firebase';
+import VueRouter from 'vue-router';
+import Home from '../views/Home.vue';
+import Catalog from '../views/Catalog.vue';
 import Cabinet from '../views/Cabinet.vue';
 
 Vue.use(VueRouter)
@@ -20,7 +21,8 @@ const routes = [
   {
     path: '/cabinet',
     name: 'Cabinet',
-    component: Cabinet
+    component: Cabinet,
+    beforeEnter: authGuard
   },
 ]
 
@@ -30,4 +32,14 @@ const router = new VueRouter({
   routes
 })
 
-export default router
+function authGuard (from, to, next) {
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      next();
+    } else {
+      next('/')
+    }
+  });
+}
+
+export default router;

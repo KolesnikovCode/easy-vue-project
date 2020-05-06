@@ -5,7 +5,7 @@
     <div class="btns">
       <button class="btn" type="button" @click.once="chosePartyStyle">на вечеринку</button>
       <button class="btn" type="button" @click.once="choseOfficeStyle">в офис</button>
-      <button class="btn" type="button" @click.once="choseEveryDayStyle">на каждый день</button>
+      <button class="btn" type="button" @click.once="choseEveryDayStyle">на каждый<br />день</button>
       <button class="btn" type="button" @click.once="choseAnyStyle">на любой случай</button>
     </div>
   </div>
@@ -16,31 +16,25 @@ export default {
   methods: {
     chosePartyStyle() {
       this.$store.commit('SET_PARTY_STYLE');
-      this.goToCatalog();
+      this.goToNextStep();
     },
     choseOfficeStyle() {
       this.$store.commit('SET_OFFICE_STYLE');
-      this.goToCatalog();
+      this.goToNextStep();
     },
     choseEveryDayStyle() {
       this.$store.commit('SET_EVERYDAY_STYLE');
-      this.goToCatalog();
+      this.goToNextStep();
     },
     choseAnyStyle() {
       this.$store.commit('SET_ANY_STYLE');
-      this.goToCatalog();
+      this.goToNextStep();
+    },
+    goToNextStep() {
+      this.$store.commit('GO_TO_NEXT_STEP');
     },
     goToPrevStep() {
       this.$store.commit('GO_TO_BACK_STEP');
-    },
-    goToCatalog() {
-      this.$store.commit('SET_IS_LOADED', false);
-      this.$store.commit('TOGGLE_MODAL');
-      this.$store.commit('GO_TO_FIRST_MODAL_STEP');
-      setTimeout(() => {
-        this.$store.commit('SET_IS_LOADED', true);
-        this.$router.push('/catalog');
-      }, 2000);
     }
   }
 }

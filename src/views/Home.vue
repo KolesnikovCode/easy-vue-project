@@ -21,6 +21,7 @@
             <ModalStep1 v-if="step === 1" key="step"/>
             <ModalStep2 v-if="step === 2" key="step"/>
             <ModalStep3 v-if="step === 3" key="step"/>
+            <ModalStep4 v-if="step === 4" key="step"/>
           </transition>
         </div>
       </Modal>
@@ -37,13 +38,15 @@ import Modal from '../components/core/Modal';
 import ModalStep1 from '../components/modalSteps/ModalStep1';
 import ModalStep2 from '../components/modalSteps/ModalStep2';
 import ModalStep3 from '../components/modalSteps/ModalStep3';
+import ModalStep4 from '../components/modalSteps/ModalStep4';
 
 export default {
   components: {
     Modal,
     ModalStep1,
     ModalStep2,
-    ModalStep3
+    ModalStep3,
+    ModalStep4
   },
   methods: {
     toggleModal() {
