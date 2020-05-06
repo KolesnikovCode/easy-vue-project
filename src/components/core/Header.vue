@@ -2,17 +2,20 @@
     <div class="header" v-click-outside="closeMobileMenu">
         <div class="container">
             <div class="header-content">
-                <router-link to="/" class="logo">EASY</router-link>
+                <router-link to="/" class="logo">
+                  <img src="@/assets/header/logo.svg" alt="">
+                </router-link>
                 <nav>
                     <router-link to="/">Главная</router-link>
                     <router-link to="/catalog">Каталог</router-link>
+                    <div class="splitter">|</div>
                     <router-link class="cabinet-link" to="/cabinet" v-if="user">
                         <span>Кабинет</span>
                         <div class="user" :title="`${user.name} ${user.surname}`">
                             <img :src="user.photo" alt="">
                         </div>
                     </router-link>
-                    <div class="sign-btn" @click="signIn" v-if="!user">Войти через google</div>
+                    <div class="sign-btn" @click="signIn" v-if="!user">Войти</div>
                 </nav>
                 <div class="burger" @click="toggleMobileMenu">|||</div>
                 <div :class="isOpenMobileMenu ? 'mobile-menu opened' : 'mobile-menu'">
@@ -21,7 +24,7 @@
                     <router-link class="cabinet-link" to="/cabinet" v-if="user" @click.native="isOpenMobileMenu = false">
                       <span>Кабинет</span>
                     </router-link>
-                    <div class="sign-btn" @click="signIn" v-if="!user">Войти через google</div>
+                    <div class="sign-btn" @click="signIn" v-if="!user">Войти</div>
                 </div>
             </div>
         </div>
@@ -72,20 +75,18 @@ export default {
 
 <style lang="scss" scoped>
 .header {
+  font-family: 'Gilroy';
   position: fixed;
   top: 0;
   bottom: 0;
   width: 100%;
   height: 50px;
-  background: #000;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
   color: #fff;
   user-select: none;
   z-index: 48;
-  opacity: .4;
   transition: all .2s ease;
-  &:hover {
-    opacity: 1;
-  }
   &-content {
     display: flex;
     justify-content: space-between;
@@ -93,18 +94,19 @@ export default {
     height: 50px;
   }
   .logo {
-      text-decoration: none;
-      color: #fff;
-      letter-spacing: 5px;
-      font-weight: bold;
       transition: all .2s ease;
-      &:hover {
-          letter-spacing: 10px;
+      img {
+        height: 32px;
+        margin-top: 6px;
       }
   }
   nav {
+      margin-top: -6px;
       display: flex;
       align-items: center;
+      text-transform: lowercase;
+      font-weight: normal;
+      font-size: 19px;
       @media screen and (max-width: 500px) {
         display: none;
       }
@@ -113,25 +115,21 @@ export default {
           text-decoration: none;
           color: #fff;
           letter-spacing: 3px;
-          font-size: 13px;
-          text-transform: uppercase;
-          font-weight: normal;
           transition: all .2s ease;
           display: flex;
+          opacity: .7;
           align-items: center;
           &:hover {
-              color: #ffd666;
+              opacity: 1;
           }
           &:not(:last-child) {
               margin-right: 10px;
           }
       }
       .router-link-exact-active {
-          color: #ffbb00;
-          pointer-events: none;
-          &:hover {
-              color: #ffbb00;
-          }
+        transform: scale(1.1);
+        opacity: 1;
+        pointer-events: none;
       }
       .cabinet-link {
           .user {
@@ -151,18 +149,22 @@ export default {
               }
           }
       }
+      .splitter {
+        margin-right: 10px;
+      }
     .sign-btn {
       color: #fff;
-      letter-spacing: 3px;
-      font-size: 13px;
-      text-transform: uppercase;
+      text-transform: lowercase;
       font-weight: normal;
+      font-size: 19px;
       transition: all .2s ease;
+      letter-spacing: 3px;
       display: flex;
       align-items: center;
+      opacity: .7;
       cursor: pointer;
       &:hover {
-        color: #ffd666;
+        opacity: 1;
       }
     }
   }
