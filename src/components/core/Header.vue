@@ -81,7 +81,7 @@ export default {
   bottom: 0;
   width: 100%;
   height: 50px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(10px);
   color: #fff;
   user-select: none;
