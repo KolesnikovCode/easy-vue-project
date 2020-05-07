@@ -54,6 +54,9 @@ export default {
     opacity: .5;
     transition: all .2s ease;
     cursor: pointer;
+    @media screen and (max-width: 500px) {
+      left: -50px;
+    }
     &:hover {
       opacity: .7;
     }

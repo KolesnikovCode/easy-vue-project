@@ -82,7 +82,7 @@ export default {
   width: 100%;
   height: 50px;
   background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
   color: #fff;
   user-select: none;
   z-index: 48;
@@ -98,6 +98,9 @@ export default {
       img {
         height: 32px;
         margin-top: 6px;
+        @media screen and (max-width: 500px) {
+          height: 20px;
+        }
       }
   }
   nav {
@@ -180,10 +183,11 @@ export default {
     box-sizing: border-box;
     position: fixed;
     width: 50%;
-    height: 100%;
+    height: 100vh;
     top: 50px;
     right: 0;
-    background: #000;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(20px);
     display: flex;
     flex-direction: column;
     padding: 20px 10px;
