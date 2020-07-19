@@ -103,11 +103,19 @@ export default {
       display: grid;
       grid-template-columns: 400px 1fr;
       width: 100%;
+      @media screen and (max-width: 780px) {
+        display: flex;
+        flex-direction: column;
+      }
       &-image {
         width: 100%;
       }
       &-side {
         padding-left: 30px;
+        @media screen and (max-width: 780px) {
+          padding-left: 0;
+          padding-top: 20px;
+        }
         h2 {
           margin: 0;
         }
