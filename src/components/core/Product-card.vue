@@ -1,5 +1,5 @@
 <template>
-  <div class="product">
+  <router-link class="product" :to="{ name: 'Product', params: {id: id}}">
     <div class="product-title">{{ title }}</div>
     <div class="product-image">
       <img :src="image" alt="product-photo">
@@ -16,12 +16,13 @@
       </div>
     </div>
     <div class="product-price">{{ price }}</div>
-  </div>
+  </router-link>
 </template>
 
 <script>
 export default {
   props: {
+    id: Number,
     title: String,
     image: String,
     styles: Array,
@@ -40,6 +41,8 @@ export default {
   transition: all .2s ease;
   cursor: pointer;
   width: 180px;
+  text-decoration: none;
+  color: #000;
   &:hover {
     transform: scale(1.015);
   }

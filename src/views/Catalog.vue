@@ -25,6 +25,7 @@
           <div class="products" v-if="filteredProducts.length > 0">
             <ProductCard
               v-for="(product, index) in filteredProducts" :key="index"
+              :id="product.id"
               :title="product.title"
               :image="product.image"
               :styles="product.styles"

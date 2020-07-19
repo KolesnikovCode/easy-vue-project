@@ -11,12 +11,14 @@
     "animate.css": "^3.7.2",
     "core-js": "^3.6.4",
     "firebase": "^7.12.0",
+    "jquery": "^3.5.1",
     "normalize.css": "^8.0.1",
     "pug-plain-loader": "^1.0.0",
     "v-click-outside": "^3.0.1",
     "vue": "^2.6.11",
     "vue-icon": "^2.1.2",
     "vue-router": "^3.1.5",
+    "vue-slick": "^1.1.15",
     "vuex": "^3.1.2"
   },
   "devDependencies": {

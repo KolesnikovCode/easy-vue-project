@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Catalog from '../views/Catalog.vue';
 import Cabinet from '../views/Cabinet.vue';
+import Product from '../views/Product.vue';
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,11 @@ const routes = [
     component: Catalog
   },
   {
+    path: '/product/:id',
+    name: 'Product',
+    component: Product,
+  },
+  {
     path: '/cabinet',
     name: 'Cabinet',
     component: Cabinet,
@@ -29,7 +35,10 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
+  scrollBehavior() {
+    document.getElementById('app').scrollIntoView();
+  }
 })
 
 function authGuard (from, to, next) {
